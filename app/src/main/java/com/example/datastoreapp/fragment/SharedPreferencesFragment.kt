@@ -3,6 +3,7 @@ package com.example.datastoreapp.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.datastoreapp.R
@@ -14,7 +15,11 @@ class SharedPreferencesFragment : Fragment(R.layout.fragment_shared_preferences)
     private lateinit var binding: FragmentSharedPreferencesBinding
     private var viewModel: SharedPreferencesViewModel? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentSharedPreferencesBinding.inflate(layoutInflater)
         return binding.root
@@ -23,7 +28,11 @@ class SharedPreferencesFragment : Fragment(R.layout.fragment_shared_preferences)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let {
-            viewModel = SharedPreferencesViewModel(SharedPreferencesStore(it))
+            viewModel = SharedPreferencesViewModel(SharedPreferencesStore(it)).also { viewModel ->
+                viewModel.liveData.observe(viewLifecycleOwner) { name ->
+                    binding.tvShowInfo.text = getString(R.string.txt_show_info, name)
+                }
+            }
         }
         configView()
     }
@@ -33,6 +42,10 @@ class SharedPreferencesFragment : Fragment(R.layout.fragment_shared_preferences)
             viewModel?.saveInfoPressed(nameEditText.text.toString())
             nameEditText.text?.clear()
         }
-        btnLoad.setOnClickListener { tvShowInfo.text = getString(R.string.txt_show_info, viewModel?.loadInfoPressed()) }
+
+        btnLoad.setOnClickListener {
+            viewModel?.loadInfoPressed()
+            tvShowInfo.visibility = VISIBLE
+        }
     }
 }
