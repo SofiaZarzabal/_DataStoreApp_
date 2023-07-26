@@ -3,4 +3,5 @@
     <dimen name="size_main_activity_button">50dp</dimen>
     <dimen name="size_info_activity_manager_margin_horizontal">20dp</dimen>
     <dimen name="size_info_activity_manager_margin_top">20dp</dimen>
+    <dimen name="size_info_title_margin_top">10dp</dimen>
 </resources>
