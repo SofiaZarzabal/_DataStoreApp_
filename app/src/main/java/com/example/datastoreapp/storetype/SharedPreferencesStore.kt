@@ -10,12 +10,12 @@ class SharedPreferencesStore(private val context: Context) {
         storage.edit().putString(SP_USERNAME, name).apply()
     }
 
-    fun getName(): String = storage.getString(SP_USERNAME, USERNAME) ?: EMPTY_STRING
+    fun getName(): String = storage.getString(SP_USERNAME, DEFAULT_INFO) ?: EMPTY_STRING
 
     companion object {
         const val SP_NAME = "SPStore"
         const val SP_USERNAME = "SP_USERNAME"
-        const val USERNAME = "USERNAME"
+        const val DEFAULT_INFO = "No info loaded."
         const val EMPTY_STRING = ""
     }
 }

@@ -3,7 +3,7 @@ package com.example.datastoreapp.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.datastoreapp.databinding.ActivityMainBinding
-
+// Borrar esta activity y su layout
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
