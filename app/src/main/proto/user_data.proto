@@ -1,0 +1,1 @@
+syntax = "proto3";option java_package = "com.example.datastoreapp.proto";option java_multiple_files = false;message UserData {  int32 user_age = 1;  string user_name = 2;}
