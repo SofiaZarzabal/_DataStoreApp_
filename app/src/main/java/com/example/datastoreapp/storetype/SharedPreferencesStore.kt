@@ -1,10 +1,11 @@
 package com.example.datastoreapp.storetype
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 
 class SharedPreferencesStore(private val context: Context) {
-    private val storage: SharedPreferences = context.getSharedPreferences(SP_NAME, 0)
+    private val storage: SharedPreferences = context.getSharedPreferences(SP_NAME, MODE_PRIVATE)
 
     fun saveName(name: String) {
         storage.edit().putString(SP_USERNAME, name).apply()
